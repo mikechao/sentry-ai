@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { generateText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
+import * as Sentry from "@sentry/cloudflare";
 
 interface CloudflareBindings {
   OPENAI_API_KEY?: string
@@ -17,9 +18,23 @@ app.get('/generate', async (c) => {
   const results = await generateText({
     model: gpt4omini('gpt-4o-mini'),
     prompt: 'Write a short poem about the sea.',
+    experimental_telemetry: {
+      isEnabled: true,
+      recordInputs: true,
+      recordOutputs: true,
+    }
   })
   return c.text(results.text)
 })
 
 
-export default app
+export default Sentry.withSentry(
+  () => {
+    return {
+      dsn: 'https://11ddea14960f3dc9e2567e07751988b7@o4510053563891712.ingest.us.sentry.io/4510229366833152',
+      tracesSampleRate: 1.0,
+      integrations: [Sentry.vercelAIIntegration()],
+    }
+  },
+  app
+)
