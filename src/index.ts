@@ -25,6 +25,7 @@ app.get('/generate', async (c) => {
       isEnabled: true,
       recordInputs: true,
       recordOutputs: true,
+      functionId: 'generate-sea-poem',
     }
   })
   return c.text(results.text)
@@ -44,7 +45,8 @@ app.post('/stream', async (c) => {
       isEnabled: true,
       recordInputs: true,
       recordOutputs: true,
-    }
+      functionId: 'stream-mountains-poem',
+    },
   })
   return result.toTextStreamResponse();
 })
