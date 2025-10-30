@@ -15,9 +15,11 @@ app.get('/generate', async (c) => {
   const gpt4omini = createOpenAI({
     apiKey: apiKey,
   })
+  const now = new Date()
+  const pst = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
   const results = await generateText({
     model: gpt4omini('gpt-4o-mini'),
-    prompt: 'Write a short poem about the sea.',
+    prompt: `Write a short poem about the sea. ${pst}`,
     experimental_telemetry: {
       isEnabled: true,
       recordInputs: true,
