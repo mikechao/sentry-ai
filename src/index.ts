@@ -5,6 +5,7 @@ import * as Sentry from "@sentry/cloudflare";
 
 interface CloudflareBindings {
   OPENAI_API_KEY?: string
+  SENTRY_DSN?: string
 }
 
 // Type the Hono app with the Cloudflare Bindings interface so c.env is typed.
@@ -49,9 +50,15 @@ app.post('/stream', async (c) => {
 })
 
 export default Sentry.withSentry(
-  () => {
+  (env: CloudflareBindings) => {
+    const dsn = env.SENTRY_DSN
+
+    if (!dsn) {
+      throw new Error('Sentry DSN is not set; define the SENTRY_DSN binding to enable telemetry.')
+    }
+
     return {
-      dsn: 'https://11ddea14960f3dc9e2567e07751988b7@o4510053563891712.ingest.us.sentry.io/4510229366833152',
+      dsn,
       tracesSampleRate: 1.0,
       integrations: [Sentry.vercelAIIntegration()],
     }

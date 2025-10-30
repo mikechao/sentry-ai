@@ -1,0 +1,2 @@
+OPENAI_API_KEY=your open ai api key here
+SENTRY_DSN=https://sentry.dns
