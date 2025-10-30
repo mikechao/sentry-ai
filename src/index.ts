@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { generateText } from 'ai'
+import { generateText, streamText } from 'ai'
 import { createOpenAI } from '@ai-sdk/openai'
 import * as Sentry from "@sentry/cloudflare";
 
@@ -29,6 +29,24 @@ app.get('/generate', async (c) => {
   return c.text(results.text)
 })
 
+app.post('/stream', async (c) => {
+  const apiKey = c.env.OPENAI_API_KEY
+  const gpt4omini = createOpenAI({
+    apiKey: apiKey,
+  })
+  const now = new Date()
+  const pst = now.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' })
+  const result = streamText({
+    model: gpt4omini('gpt-4o-mini'),
+    prompt: `Write a short poem about the mountains. ${pst}`,
+    experimental_telemetry: {
+      isEnabled: true,
+      recordInputs: true,
+      recordOutputs: true,
+    }
+  })
+  return result.toTextStreamResponse();
+})
 
 export default Sentry.withSentry(
   () => {
