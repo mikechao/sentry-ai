@@ -10,16 +10,19 @@ importers:
     dependencies:
       '@ai-sdk/openai':
         specifier: ^2.0.58
-        version: 2.0.58(zod@3.22.3)
+        version: 2.0.58(zod@4.1.12)
       '@sentry/cloudflare':
         specifier: ^10.22.0
         version: 10.22.0
       ai:
         specifier: ^5.0.82
-        version: 5.0.82(zod@3.22.3)
+        version: 5.0.82(zod@4.1.12)
       hono:
         specifier: ^4.10.4
         version: 4.10.4
+      zod:
+        specifier: ^4.1.12
+        version: 4.1.12
     devDependencies:
       wrangler:
         specifier: ^4.4.0
@@ -576,27 +579,30 @@ packages:
   zod@3.22.3:
     resolution: {integrity: sha512-EjIevzuJRiRPbVH4mGc8nApb/lVLKVpmUhAaR5R5doKGfAnGJ6Gr3CViAVjP+4FWSxCsybeWQdcgCtbX+7oZug==}
 
+  zod@4.1.12:
+    resolution: {integrity: sha512-JInaHOamG8pt5+Ey8kGmdcAcg3OL9reK8ltczgHTAwNhMys/6ThXHityHxVV2p3fkw/c+MAvBHFVYHFZDmjMCQ==}
+
 snapshots:
 
-  '@ai-sdk/gateway@2.0.3(zod@3.22.3)':
+  '@ai-sdk/gateway@2.0.3(zod@4.1.12)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.14(zod@3.22.3)
+      '@ai-sdk/provider-utils': 3.0.14(zod@4.1.12)
       '@vercel/oidc': 3.0.3
-      zod: 3.22.3
+      zod: 4.1.12
 
-  '@ai-sdk/openai@2.0.58(zod@3.22.3)':
+  '@ai-sdk/openai@2.0.58(zod@4.1.12)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.14(zod@3.22.3)
-      zod: 3.22.3
+      '@ai-sdk/provider-utils': 3.0.14(zod@4.1.12)
+      zod: 4.1.12
 
-  '@ai-sdk/provider-utils@3.0.14(zod@3.22.3)':
+  '@ai-sdk/provider-utils@3.0.14(zod@4.1.12)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@standard-schema/spec': 1.0.0
       eventsource-parser: 3.0.6
-      zod: 3.22.3
+      zod: 4.1.12
 
   '@ai-sdk/provider@2.0.0':
     dependencies:
@@ -828,13 +834,13 @@ snapshots:
 
   acorn@8.14.0: {}
 
-  ai@5.0.82(zod@3.22.3):
+  ai@5.0.82(zod@4.1.12):
     dependencies:
-      '@ai-sdk/gateway': 2.0.3(zod@3.22.3)
+      '@ai-sdk/gateway': 2.0.3(zod@4.1.12)
       '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.14(zod@3.22.3)
+      '@ai-sdk/provider-utils': 3.0.14(zod@4.1.12)
       '@opentelemetry/api': 1.9.0
-      zod: 3.22.3
+      zod: 4.1.12
 
   blake3-wasm@2.1.5: {}
 
@@ -1026,3 +1032,5 @@ snapshots:
       youch-core: 0.3.3
 
   zod@3.22.3: {}
+
+  zod@4.1.12: {}
