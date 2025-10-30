@@ -48,6 +48,9 @@ app.post('/stream', async (c) => {
       functionId: 'stream-mountains-poem',
     },
   })
+  // the await result.response will have ai telemetry recorded,
+  // but it breaks the streaming response to the client.
+  //await result.response
   return result.toTextStreamResponse();
 })
 
